@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TanuloKartyak.Views.IndexPage"
+             Title="Kezdőlap">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Label" x:Key="srcLabel">
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <StackLayout Background="#0B4F9A">
+                <Label Text="Gyermekfogászat szakvizsgára&#x0a;felkészítő tanulókártyák" 
+                       FontSize="20" Padding="20" 
+                       TextColor="Yellow" />
+            </StackLayout>
+            <Image Source="sztefok.jpg" MaximumHeightRequest="295" />
+            <Button Text="Indítás" FontSize="18"
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="Button_Clicked"/>
+            <Label Text="Készítette:&#x0a;Dr. Kolozsvári Zsanett"
+                   FontSize="16"/>
+            <StackLayout Spacing="0" Padding="10,0,10,0">
+                <Label Text="Képek forrása:" FontAttributes="Bold"
+                   Style="{StaticResource srcLabel}"/>
+                <Label Text="Gyermekfogászat, fogszabályozás és állcsont-ortopédia - 2. kiadás"
+                   Style="{StaticResource srcLabel}"/>
+                <Label Text="Szerző(k)/Szerkesztő(k):Fábián Gábor(Dr.), Gábris Katalin(Dr.), Tarján Ildikó(Dr.)"
+                   Style="{StaticResource srcLabel}"/>
+                <Label Text="ISBN: 9789633313411"
+                   Style="{StaticResource srcLabel}"/>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
