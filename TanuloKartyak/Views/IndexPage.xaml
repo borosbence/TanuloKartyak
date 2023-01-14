@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TanuloKartyak.Views.IndexPage"
-             Title="Kezdőlap">
+             x:Class="TanuloKartyak.Views.IndexPage">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -15,25 +14,29 @@
     <ScrollView>
         <VerticalStackLayout Spacing="10">
             <StackLayout Background="#0B4F9A">
-                <Label Text="Gyermekfogászat szakvizsgára&#x0a;felkészítő tanulókártyák" 
-                       FontSize="20" Padding="20" 
-                       TextColor="Yellow" />
+                <Label FontSize="20" 
+                       Padding="20" 
+                       TextColor="Yellow">
+                    Gyermekfogászat szakvizsgára&#x0a;felkészítő tanulókártyák
+                </Label>
             </StackLayout>
             <Image Source="sztefok.jpg" MaximumHeightRequest="295" />
-            <Button Text="Indítás" FontSize="18"
-                    HorizontalOptions="CenterAndExpand"
+            <Button Text="Indítás" 
+                    FontSize="18" HorizontalOptions="CenterAndExpand" 
                     Clicked="Button_Clicked"/>
-            <Label Text="Készítette:&#x0a;Dr. Kolozsvári Zsanett"
-                   FontSize="16"/>
-            <StackLayout Spacing="0" Padding="10,0,10,0">
-                <Label Text="Képek forrása:" FontAttributes="Bold"
-                   Style="{StaticResource srcLabel}"/>
-                <Label Text="Gyermekfogászat, fogszabályozás és állcsont-ortopédia - 2. kiadás"
-                   Style="{StaticResource srcLabel}"/>
-                <Label Text="Szerző(k)/Szerkesztő(k):Fábián Gábor(Dr.), Gábris Katalin(Dr.), Tarján Ildikó(Dr.)"
-                   Style="{StaticResource srcLabel}"/>
-                <Label Text="ISBN: 9789633313411"
-                   Style="{StaticResource srcLabel}"/>
+            <Label FontSize="16">Készítette:&#x0a;Dr. Kolozsvári Zsanett</Label>
+            <StackLayout Spacing="0" Margin="10">
+                <Label FontAttributes="Bold"
+                       Style="{StaticResource srcLabel}">Képek forrása:</Label>
+                <Label Style="{StaticResource srcLabel}">
+                    Gyermekfogászat, fogszabályozás és állcsont-ortopédia - 2. kiadás
+                </Label>
+                <Label Style="{StaticResource srcLabel}">
+                    Szerző(k)/Szerkesztő(k):Fábián Gábor(Dr.), Gábris Katalin(Dr.), Tarján Ildikó(Dr.)
+                </Label>
+                <Label Style="{StaticResource srcLabel}">
+                    ISBN: 9789633313411
+                </Label>
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

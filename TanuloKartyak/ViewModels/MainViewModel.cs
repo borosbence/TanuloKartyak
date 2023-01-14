@@ -16,11 +16,20 @@ namespace TanuloKartyak.ViewModels
             Task.Run(LoadData);
         }
 
+        // Loading screen
         private bool _loading;
         public bool Loading
         {
             get { return _loading; }
             set { SetProperty(ref _loading, value); }
+        }
+
+        // Progress Bar
+        private double _percent;
+        public double Percent
+        {
+            get { return _percent; }
+            set { SetProperty(ref _percent, value); }
         }
 
         private bool _loaded;
@@ -30,7 +39,7 @@ namespace TanuloKartyak.ViewModels
             set { SetProperty(ref _loaded, value); }
         }
 
-        private List<Card> _cardList;
+        private readonly List<Card> _cardList;
 
         private Card _selectedCard;
         public Card SelectedCard
@@ -46,8 +55,8 @@ namespace TanuloKartyak.ViewModels
             set { SetProperty(ref _visibleText, value); }
         }
 
-        public IRelayCommand NextCommand { get; set; }
-        public IRelayCommand ShowTextCommand { get; set; }
+        public IRelayCommand NextCommand { get; }
+        public IRelayCommand ShowTextCommand { get; }
 
 		private async Task LoadData()
 		{
@@ -64,6 +73,8 @@ namespace TanuloKartyak.ViewModels
                         string image = workSheet.Cell(i, 4).GetValue<string>();
                         string title = workSheet.Cell(i, 5).GetValue<string>();
                         _cardList.Add(new Card(image, title));
+                        Percent = 100 / (double)rows * i / 100;
+                        await Task.Delay(10);
                     }
                 }
             }

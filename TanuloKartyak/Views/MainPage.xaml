@@ -2,18 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TanuloKartyak.ViewModels"
+             xmlns:conv="clr-namespace:TanuloKartyak.Converters"
              x:Class="TanuloKartyak.Views.MainPage"
-             Title="Tanulókártyák">
+             Shell.NavBarIsVisible="false">
+    <ContentPage.Resources>
+        <conv:PercentConverter x:Key="percentConv" />
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout VerticalOptions="Center">
-            <Label Text="Betöltés..." IsVisible="{Binding Loading}" 
-                   FontSize="20" HorizontalOptions="Center" />
+
+            <StackLayout IsVisible="{Binding Loading}" Margin="10" Spacing="10">
+                <Label HorizontalOptions="Center"
+                       FontSize="20" >Betöltés...</Label>
+                <ProgressBar Progress="{Binding Percent}" ScaleY="5"/>
+                <Label Text="{Binding Percent, Converter={StaticResource percentConv}}"
+                       HorizontalOptions="Center">
+                </Label>
+            </StackLayout>
+
             <StackLayout IsVisible="{Binding Loaded}" Spacing="10">
                 <Image Source="{Binding SelectedCard.ImageFileName}"
-                   Aspect="AspectFit" MaximumHeightRequest="400">
+                       Aspect="AspectFit" MaximumHeightRequest="400">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1"
-                        Command="{Binding ShowTextCommand}"/>
+                        <TapGestureRecognizer Command="{Binding ShowTextCommand}"
+                                              NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Text="{Binding SelectedCard.Title}"
@@ -24,6 +36,7 @@
                     Command="{Binding NextCommand}" 
                     HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
