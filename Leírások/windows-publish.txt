@@ -1,0 +1,22 @@
+Tanúsítvány készítése:
+New-SelfSignedCertificate -Type Custom `
+                          -Subject "CN=Bence Boros" `
+                          -KeyUsage DigitalSignature `
+                          -FriendlyName "Fejlesztői tanúsítvány" `
+                          -CertStoreLocation "Cert:\CurrentUser\My" `
+                          -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
+
+Ujjlenyomat lekérdezése:
+Get-ChildItem "Cert:\CurrentUser\My" | Format-Table Subject, FriendlyName, Thumbprint
+
+PropertyGroup hozzáadása:
+<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(Configuration)' == 'Release'">
+    <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>A10612AF095FD8F8255F4C6691D88F79EF2B135E</PackageCertificateThumbprint>
+</PropertyGroup>
+<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(RuntimeIdentifierOverride)' != ''">
+    <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
+</PropertyGroup>
+
+Publish parancs:
+dotnet publish -f net7.0-windows10.0.19041.0 -c Release /p:RuntimeIdentifierOverride=win10-x64
