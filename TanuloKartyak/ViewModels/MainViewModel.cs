@@ -70,8 +70,8 @@ namespace TanuloKartyak.ViewModels
 
                     for (int i = 1; i <= rows; i++)
                     {
-                        string image = workSheet.Cell(i, 4).GetValue<string>();
-                        string title = workSheet.Cell(i, 5).GetValue<string>();
+                        string image = workSheet.Cell(i, 2).GetValue<string>();
+                        string title = workSheet.Cell(i, 3).GetValue<string>();
                         _cardList.Add(new Card(image, title));
                         Percent = 100 / (double)rows * i / 100;
                         await Task.Delay(10);
